@@ -1,1250 +1,520 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Anney & Rusty · Wedding</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        :root {
-            --ivory: #fcf8f3;
-            --champagne: #f5ede4;
-            --sage: #8a9b7a;
-            --gold: #c9a96e;
-            --gold-light: #e8d5b5;
-            --charcoal: #2c2c2c;
-            --charcoal-light: #4a4a4a;
-            --white: #ffffff;
-            --shadow: 0 8px 40px rgba(44, 44, 44, 0.08);
-            --radius: 16px;
-            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #2c2c2c;
-            line-height: 1.6;
-            overflow: visible;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            background: #fcf8f3;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        button {
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-family: inherit;
-        }
-
-        #phone-container {
-            width: 100vw;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            margin: 0;
-            box-shadow: none;
-        }
-
-        #main-website {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-        #main-website.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lang-btn {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            z-index: 200;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.75);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--charcoal);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .lang-btn:hover {
-            transform: scale(1.06);
-        }
-
-        #floating-nav {
-            position: fixed !important;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) !important;
-            z-index: 99999;
-            width: calc(100% - 32px);
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.75);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 8px 12px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        #floating-nav ul {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            list-style: none;
-            width: 100%;
-        }
-        #floating-nav ul li a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 6px 10px;
-            font-size: 0.55rem;
-            color: var(--charcoal-light);
-            transition: var(--transition);
-            position: relative;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            border-radius: 16px;
-            min-width: 44px;
-        }
-        #floating-nav ul li a i {
-            font-size: 1.1rem;
-            margin-bottom: 1px;
-            transition: var(--transition);
-        }
-        #floating-nav ul li a span {
-            font-size: 0.45rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.7;
-        }
-        #floating-nav ul li a.active {
-            color: var(--gold);
-            background: rgba(201, 169, 110, 0.12);
-        }
-        #floating-nav ul li a.active::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 16px;
-            height: 3px;
-            background: var(--gold);
-            border-radius: 4px;
-        }
-
-        .music-btn {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 200;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.75);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--charcoal);
-            font-size: 1.1rem;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .music-btn.playing {
-            color: var(--gold);
-            border-color: var(--gold);
-        }
-
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding: 80px 20px 120px;
-            animation: pageFade 0.4s ease;
-            position: relative;
-            z-index: 1;
-            background-color: var(--ivory);
-        }
-        .page.active {
-            display: block;
-        }
-        @keyframes pageFade {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 32px;
-            color: #2c2c2c;
-            letter-spacing: 0.02em;
-        }
-        .mt-40 {
-            margin-top: 40px;
-        }
-        .info-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        /* ===== ENVELOPE ===== */
-        #envelope-screen {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: rgba(252, 248, 243, 0.98);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        #envelope-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: scale(1.1);
-        }
-        .envelope-container {
-            text-align: center;
-            padding: 32px 24px;
-            width: 100%;
-        }
-        .envelope-container > * {
-            opacity: 0;
-            animation: fadeUpIn 0.8s ease forwards;
-        }
-        .envelope-container > *:nth-child(1) { animation-delay: 0.3s; }
-        .envelope-container > *:nth-child(2) { animation-delay: 0.5s; }
-        .envelope-container > *:nth-child(3) { animation-delay: 0.7s; }
-        .envelope-container > *:nth-child(4) { animation-delay: 0.9s; }
-        .envelope-container > *:nth-child(5) { animation-delay: 1.1s; }
-        .envelope-container > *:nth-child(6) { animation-delay: 1.3s; }
-        @keyframes fadeUpIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .envelope-subtitle {
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--charcoal-light);
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-        .envelope-names {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--charcoal);
-            margin-bottom: 4px;
-            letter-spacing: 0.04em;
-        }
-        .envelope-date {
-            font-size: 0.8rem;
-            color: var(--charcoal-light);
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-        .envelope-icon {
-            font-size: 3.6rem;
-            color: var(--gold);
-            margin: 12px 0 24px;
-            animation: bounceEnvelope 2s ease-in-out infinite;
-        }
-        @keyframes bounceEnvelope {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-        .envelope-button {
-            display: inline-block;
-            padding: 14px 40px;
-            background: var(--charcoal);
-            color: var(--ivory);
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-        .envelope-button:active {
-            transform: scale(0.95);
-        }
-        .envelope-tap {
-            margin-top: 14px;
-            font-size: 0.65rem;
-            color: var(--charcoal-light);
-            opacity: 0.5;
-            letter-spacing: 1px;
-            animation: pulse-tap 2s ease-in-out infinite;
-        }
-        @keyframes pulse-tap {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        /* ===== HOME (KOSONG - hanya story) ===== */
-        #home {
-            padding: 0;
-            text-align: center;
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: var(--ivory);
-        }
-
-        /* ===== TIMELINE ===== */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            max-width: 100%;
-            margin: 0 auto;
-            position: relative;
-            padding-left: 28px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 8px;
-            bottom: 8px;
-            width: 2px;
-            background: var(--gold-light);
-        }
-        .timeline-item {
-            display: flex;
-            gap: 16px;
-            padding: 14px 0;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.5s ease forwards;
-        }
-        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
-        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .timeline-icon {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 2px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 0.8rem;
-            margin-top: 2px;
-            box-shadow: 0 0 0 4px var(--ivory);
-            z-index: 1;
-        }
-        .timeline-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 1px;
-        }
-        .timeline-item p {
-            font-size: 0.85rem;
-            color: var(--charcoal-light);
-            font-weight: 300;
-            line-height: 1.5;
-        }
-
-        /* ===== EVENTS ===== */
-        .details-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .detail-card {
-            background: var(--ivory);
-            padding: 24px 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(201, 169, 110, 0.08);
-        }
-        .detail-card i {
-            font-size: 1.6rem;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-        .detail-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .detail-card p {
-            font-size: 0.85rem;
-            color: var(--charcoal-light);
-            margin-bottom: 2px;
-        }
-        .detail-card p strong {
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-        .map-btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            background: var(--charcoal);
-            color: var(--white);
-            transition: var(--transition);
-            letter-spacing: 0.5px;
-        }
-        .map-btn i {
-            font-size: 0.7rem;
-            margin-right: 4px;
-            color: inherit;
-        }
-
-        .schedule-list {
-            max-width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .schedule-list div {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(44, 44, 44, 0.04);
-            border-left: 3px solid var(--gold);
-        }
-        .schedule-list div span {
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: var(--charcoal);
-            min-width: 70px;
-            font-family: 'Playfair Display', serif;
-        }
-        .schedule-list div {
-            font-size: 0.85rem;
-            color: var(--charcoal-light);
-        }
-
-        .venue-card {
-            max-width: 100%;
-            margin: 0 auto;
-            text-align: center;
-            background: var(--ivory);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        .venue-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-        .venue-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            margin: 16px 16px 4px;
-        }
-        .venue-card>p {
-            color: var(--charcoal-light);
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-        }
-        .venue-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-        .venue-buttons .map-btn {
-            margin-top: 0;
-        }
-        .map-embed {
-            padding: 0 12px 12px;
-        }
-        .map-embed iframe {
-            width: 100%;
-            height: 160px;
-            border: 0;
-            border-radius: 12px;
-        }
-
-        /* ===== RSVP ===== */
-        #rsvpForm {
-            max-width: 100%;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 24px 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        #rsvpForm label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            margin-bottom: 14px;
-        }
-        #rsvpForm input,
-        #rsvpForm select,
-        #rsvpForm textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #e8e0d8;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-family: 'Inter', sans-serif;
-            background: var(--ivory);
-            transition: var(--transition);
-            margin-top: 4px;
-        }
-        #rsvpForm input:focus,
-        #rsvpForm select:focus,
-        #rsvpForm textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
-        }
-        #rsvpForm fieldset {
-            border: none;
-            padding: 0;
-            margin: 0 0 14px;
-        }
-        #rsvpForm legend {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-            padding: 0;
-        }
-        .radio-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .radio-group label {
-            font-weight: 400;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 0;
-            cursor: pointer;
-        }
-        .radio-group input[type="radio"] {
-            width: auto;
-            margin: 0;
-            accent-color: var(--gold);
-            width: 17px;
-            height: 17px;
-            flex-shrink: 0;
-        }
-        .primary-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--charcoal);
-            color: var(--white);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            transition: var(--transition);
-            border: 1px solid transparent;
-            margin-top: 4px;
-        }
-
-        /* ===== GALLERY ===== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .gallery-grid img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 2px 12px rgba(44, 44, 44, 0.06);
-        }
-
-        /* ===== INFO ===== */
-        .dress-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .dress-cards>div {
-            background: var(--white);
-            padding: 20px 12px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        .dress-cards i {
-            font-size: 1.6rem;
-            color: var(--gold);
-            margin-bottom: 6px;
-        }
-        .dress-cards h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        .dress-cards p {
-            font-size: 0.8rem;
-            color: var(--charcoal-light);
-        }
-
-        .gift-message {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--charcoal-light);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .bank-card {
-            max-width: 100%;
-            margin: 0 auto;
-            background: var(--ivory);
-            padding: 20px 18px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(201, 169, 110, 0.1);
-        }
-        .bank-card p {
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-            color: var(--charcoal-light);
-        }
-        .bank-card p strong {
-            color: var(--charcoal);
-            font-weight: 500;
-            display: inline-block;
-            min-width: 80px;
-        }
-        .secondary-btn {
-            padding: 8px 22px;
-            border-radius: 50px;
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            margin-top: 10px;
-        }
-        #copyFeedback {
-            display: inline-block;
-            margin-left: 8px;
-            font-size: 0.75rem;
-            color: var(--sage);
-            font-weight: 500;
-        }
-
-        .faq-accordion {
-            max-width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .faq-accordion>div {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(44, 44, 44, 0.04);
-        }
-        .faq-question {
-            width: 100%;
-            padding: 14px 16px;
-            text-align: left;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--white);
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-        }
-        .faq-question i {
-            transition: transform 0.3s ease;
-            color: var(--gold);
-            font-size: 0.75rem;
-        }
-        .faq-question.open i {
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.3s ease;
-            padding: 0 16px;
-        }
-        .faq-answer.open {
-            max-height: 200px;
-            padding: 0 16px 14px;
-        }
-        .faq-answer p {
-            font-size: 0.85rem;
-            color: var(--charcoal-light);
-            line-height: 1.6;
-        }
-
-        /* ===== MODAL ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(0, 0, 0, 0.5);
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px);
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-        .modal.open {
-            display: flex;
-        }
-        .modal-content {
-            background: var(--white);
-            padding: 32px 24px;
-            border-radius: var(--radius);
-            max-width: 360px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
-            animation: modalIn 0.35s ease;
-        }
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.92) translateY(16px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .modal-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 6px;
-        }
-        .modal-content h2 span {
-            color: var(--gold);
-        }
-        .modal-content p {
-            font-size: 0.95rem;
-            color: var(--charcoal-light);
-            margin-bottom: 20px;
-        }
-        .modal-content .primary-btn {
-            width: auto;
-            padding: 10px 36px;
-            margin-top: 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 24px 20px 32px;
-            background: var(--charcoal);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-        }
-        footer p {
-            font-weight: 300;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HIGHFLEK STUDIO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div id="phone-container">
+<div class="container">
 
-        <!-- ENVELOPE SCREEN -->
-        <section id="envelope-screen" aria-label="Invitation envelope">
-            <div class="envelope-container">
-                <div class="envelope-subtitle" id="envSubtitle">THE WEDDING OF</div>
-                <h1 class="envelope-names" id="envNames">Anney & Rusty</h1>
-                <div class="envelope-date" id="envDate">21 November 2026</div>
-                <div class="envelope-icon"><i class="fas fa-envelope"></i></div>
-                <button class="envelope-button" id="openInvitationBtn">OPEN INVITATION</button>
-                <div class="envelope-tap">Tap to open</div>
-            </div>
-        </section>
-
-        <!-- MAIN WEBSITE -->
-        <div id="main-website">
-
-            <!-- BUTANG BAHASA -->
-            <button class="lang-btn" id="langToggle">EN</button>
-
-            <!-- MUSIC BUTTON -->
-            <button class="music-btn" id="musicToggle" aria-label="Toggle music">
-                <i class="fas fa-music"></i>
-            </button>
-
-            <!-- FLOATING NAVIGATION -->
-            <nav id="floating-nav" aria-label="Main navigation">
-                <ul>
-                    <li><a href="#" data-page="home" class="active"><i class="fas fa-home"></i><span data-i18n="home">Home</span></a></li>
-                    <li><a href="#" data-page="story"><i class="fas fa-book-open"></i><span data-i18n="story">Story</span></a></li>
-                    <li><a href="#" data-page="events"><i class="fas fa-ring"></i><span data-i18n="events">Events</span></a></li>
-                    <li><a href="#" data-page="gallery"><i class="fas fa-images"></i><span data-i18n="gallery">Gallery</span></a></li>
-                    <li><a href="#" data-page="rsvp"><i class="fas fa-check-circle"></i><span data-i18n="rsvp">RSVP</span></a></li>
-                    <li><a href="#" data-page="info"><i class="fas fa-info-circle"></i><span data-i18n="info">Info</span></a></li>
-                </ul>
-            </nav>
-
-            <!-- PAGE: HOME (kosong - hanya story) -->
-            <section id="home" class="page active">
-                <!-- Kosong -->
-            </section>
-
-            <!-- PAGE: STORY -->
-            <section id="story" class="page">
-                <h2 class="page-title" data-i18n="ourStory">Our Story</h2>
-                <div class="timeline" id="timelineContainer">
-                    <!-- Injected by JS -->
-                </div>
-            </section>
-
-            <!-- PAGE: EVENTS -->
-            <section id="events" class="page">
-                <h2 class="page-title" data-i18n="weddingDetails">Wedding Details</h2>
-                <div class="details-cards" id="detailsContainer">
-                    <!-- Injected by JS -->
-                </div>
-
-                <h2 class="page-title mt-40" data-i18n="orderOfDay">Order of the Day</h2>
-                <div class="schedule-list" id="scheduleContainer">
-                    <!-- Injected by JS -->
-                </div>
-
-                <h2 class="page-title mt-40" data-i18n="venue">Venue</h2>
-                <div class="venue-card" id="venueContainer">
-                    <!-- Injected by JS -->
-                </div>
-            </section>
-
-            <!-- PAGE: GALLERY -->
-            <section id="gallery" class="page">
-                <h2 class="page-title" data-i18n="galleryTitle">Gallery</h2>
-                <div class="gallery-grid" id="galleryGrid">
-                    <!-- Injected by JS -->
-                </div>
-            </section>
-
-            <!-- PAGE: RSVP -->
-            <section id="rsvp" class="page">
-                <h2 class="page-title" data-i18n="rsvpTitle">RSVP</h2>
-                <form id="rsvpForm" novalidate>
-                    <label data-i18n="fullName">Full Name <input type="text" id="fullName" required autocomplete="name" placeholder="Your full name" /></label>
-                    <fieldset>
-                        <legend data-i18n="attendance">Attendance</legend>
-                        <div class="radio-group">
-                            <label><input type="radio" name="attendance" value="yes" checked /> <span data-i18n="attendYes">Yes, I will attend</span></label>
-                            <label><input type="radio" name="attendance" value="no" /> <span data-i18n="attendNo">Sorry, I cannot attend</span></label>
-                        </div>
-                    </fieldset>
-                    <label data-i18n="guests">Number of Guests <input type="number" id="guestCount" min="1" value="1" /></label>
-                    <label data-i18n="phone">Phone Number <input type="tel" id="phoneNumber" autocomplete="tel" placeholder="Your phone number" /></label>
-                    <label data-i18n="mealPref">Meal Preference
-                        <select id="mealPreference">
-                            <option value="none" data-i18n="noPref">No preference</option>
-                            <option value="chicken" data-i18n="chicken">Chicken</option>
-                            <option value="beef" data-i18n="beef">Beef</option>
-                            <option value="vegetarian" data-i18n="vegetarian">Vegetarian</option>
-                        </select>
-                    </label>
-                    <label data-i18n="wishes">Message / Wishes <textarea id="wishes" rows="2" placeholder="Your message..."></textarea></label>
-                    <button type="submit" class="primary-btn" data-i18n="confirmRsvp">CONFIRM RSVP</button>
-                </form>
-            </section>
-
-            <!-- PAGE: INFO -->
-            <section id="info" class="page">
-                <h2 class="page-title" data-i18n="infoTitle">Information</h2>
-
-                <h3 class="info-title" data-i18n="dressCode">Dress Code</h3>
-                <div class="dress-cards" id="dressContainer">
-                    <!-- Injected by JS -->
-                </div>
-
-                <h3 class="info-title" data-i18n="weddingGift">Wedding Gift</h3>
-                <p class="gift-message" id="giftMessage" data-i18n="giftMsg">Your presence is the greatest gift.</p>
-                <div class="bank-card" id="bankContainer">
-                    <!-- Injected by JS -->
-                </div>
-
-                <h3 class="info-title" data-i18n="faqTitle">FAQ</h3>
-                <div class="faq-accordion" id="faqContainer">
-                    <!-- Injected by JS -->
-                </div>
-            </section>
-
-            <!-- FOOTER -->
-            <footer>
-                <p id="footerText">Anney &amp; Rusty · 21 November 2026</p>
-            </footer>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="logo" id="logoBtn">
+            <img src="logo/2.png" alt="HIGHFLEK STUDIO" />
         </div>
-
-        <!-- RSVP MODAL -->
-        <div id="rsvpModal" class="modal" role="dialog" aria-modal="true" aria-label="RSVP confirmation">
-            <div class="modal-content">
-                <h2>Thank you, <span id="modalName">Guest</span> ❤️</h2>
-                <p>We have received your RSVP.</p>
-                <button class="primary-btn" id="closeModalBtn">Close</button>
-            </div>
+        <div class="nav-menu">
+            <span class="nav-link active" data-page="home">HOME</span>
+            <span class="nav-link" data-page="shop">SHOP</span>
+            <span class="nav-link" data-page="hoodies">HOODIES</span>
+            <span class="nav-link" data-page="tshirts">T-SHIRTS</span>
+            <span class="nav-link" data-page="POSTER">POSTER</span>
+            <span class="nav-link" data-page="jackets">JACKETS</span>
+            <span class="nav-link basket-nav-wrapper" data-page="basket">
+                BASKET
+                <span class="basket-counter">0</span>
+            </span>
         </div>
     </div>
 
-    <script>
-        // 1. BUKA INVITATION
-        const envelopeScreen = document.getElementById('envelope-screen');
-        const mainWebsite = document.getElementById('main-website');
-        const openBtn = document.getElementById('openInvitationBtn');
+    <!-- ===== PAGE: HOME ===== -->
+    <div id="page-home" class="page-content active">
+        
+        <!-- HERO -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <img src="logo/1.2.png" alt="HIGHFLEKSTUDIO" class="main-logo" />
+                <p>Sejak 2019, kami menghasilkan streetwear asli yang menggabungkan reka bentuk berani dengan keselesaan harian. Setiap helai dibuat untuk mereka yang memakai identiti dengan bangga.</p>
+                
+                <button class="btn-start" id="startShoppingBtn">
+                    DESIGN CATALOGS <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
 
-        openBtn.addEventListener('click', () => {
-            envelopeScreen.classList.add('hidden');
-            mainWebsite.classList.add('visible');
-            document.body.style.overflow = 'auto';
-            initMusic(CONFIG.musicUrl);
+
+        <!-- HIGHFLEK DESIGNS LATEST -->
+        <div class="section-header">
+            <h2>LATEST DESIGN</h2>
+            <span class="view-all" id="viewAllBtn">VIEW ALL →</span>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- Produk akan dijana JavaScript -->
+        </div>
+
+        <!-- COLLABORATION / CREDITS -->
+        <div class="offer-block">
+            <div class="offer-text">
+                <h3>Collaborating With</h3>
+                <p>
+                    Man behind of Highflekstudio, <strong>Jevinson</strong>.<br>
+                    Kerjasama dengan <strong>Riduwan</strong>.
+                </p>
+            </div>
+            <!-- TAMBAH rel="noopener noreferrer" DI SINI UNTUK BUANG WARNING -->
+            <a href="https://www.google.com/maps/place/19,+Jalan+Sungai+Rasau+35,+Kawasan+Perindustrian+Sungai+Rasau,+41300+Klang,+Selangor" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                <button class="btn-subscribe" id="subscribeBtn">
+                    ZIAZ PRINTING <i class="fas fa-arrow-right"></i>
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== PAGE: SHOP ===== -->
+    <div id="page-shop" class="page-content">
+        <div class="section-header">
+            <h2>ALL CATALOG</h2>
+        </div>
+        
+        <div class="product-grid" id="shopGrid">
+            <!-- Produk akan dijana JavaScript -->
+        </div>
+    </div>
+
+    <!-- ===== PAGE: HOODIES ===== -->
+    <div id="page-hoodies" class="page-content">
+        <div class="section-header">
+            <h2>HOODIES</h2>
+        </div>
+        <div class="product-grid" id="hoodiesGrid">
+            <!-- Produk akan dijana JavaScript -->
+        </div>
+    </div>
+
+    <!-- ===== PAGE: T-SHIRTS ===== -->
+    <div id="page-tshirts" class="page-content">
+        <div class="section-header">
+            <h2>T-SHIRTS</h2>
+        </div>
+        <div class="product-grid" id="tshirtsGrid">
+            <!-- Produk akan dijana JavaScript -->
+        </div>
+    </div>
+
+    <!-- ===== PAGE: POSTER ===== -->
+    <div id="page-POSTER" class="page-content">
+        <div class="section-header">
+            <h2>POSTER</h2>
+        </div>
+        <div class="product-grid" id="POSTERGrid">
+            <!-- Produk akan dijana JavaScript -->
+        </div>
+    </div>
+
+    <!-- ===== PAGE: JACKETS ===== -->
+    <div id="page-jackets" class="page-content">
+        <div class="section-header">
+            <h2>JACKETS</h2>
+        </div>
+        <div class="product-grid" id="jacketsGrid">
+            <!-- Produk akan dijana JavaScript -->
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+        <i class="fas fa-tshirt"></i> HIGHFLEK STUDIO 
+    </div>
+</div>
+
+<!-- ============================== -->
+<!-- POPUP / MODAL HTML STRUCTURE  -->
+<!-- ============================== -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal-box">
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+        
+        <div class="modal-image-container">
+            <img id="modalImage" src="" alt="Product Image" />
+        </div>
+        
+        <div class="modal-details">
+            <h2 id="modalTitle">Product Name</h2>
+            <p class="modal-desc" id="modalDesc">Product description goes here.</p>
+            <div class="modal-price" id="modalPrice">$0.00</div>
+            <button class="modal-add-btn" id="modalAddBtn">Add To Basket</button>
+        </div>
+     </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-message" id="toast"></div>
+
+<script>
+    (function() {
+        const toast = document.getElementById('toast');
+        let toastTimer = null;
+
+        function showToast(message, duration = 1800) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        // ===== BASKET LOGIC (Tambah Simpan Data) =====
+        let basket = JSON.parse(localStorage.getItem('highflekBasket')) || [];
+
+        function saveBasket() {
+            localStorage.setItem('highflekBasket', JSON.stringify(basket));
+            updateBasketCounter();
+        }
+
+        function addToBasket(name, price, desc, img) {
+            const existingItem = basket.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty = (existingItem.qty || 1) + 1;
+            } else {
+                basket.push({ name, price, desc, img, qty: 1 });
+            }
+            saveBasket();
+            showToast(`🛒 "${name}" added to basket!`);
+        }
+
+        function removeFromBasket(name) {
+            basket = basket.filter(item => item.name !== name);
+            saveBasket();
+            renderBasketItems(); 
+        }
+
+        function updateBasketCounter() {
+            const counter = document.querySelector('.basket-counter');
+            if (counter) {
+                const totalItems = basket.reduce((sum, item) => sum + (item.qty || 1), 0);
+                counter.textContent = totalItems;
+                counter.style.display = totalItems > 0 ? 'flex' : 'none';
+            }
+        }
+
+        // ===== NAVIGATION & PAGES =====
+        const navLinks = document.querySelectorAll('.nav-link');
+        const allPages = {
+            home: document.getElementById('page-home'),
+            shop: document.getElementById('page-shop'),
+            hoodies: document.getElementById('page-hoodies'),
+            tshirts: document.getElementById('page-tshirts'),
+            POSTER: document.getElementById('page-POSTER'),
+            jackets: document.getElementById('page-jackets')
+        };
+        
+        // Tambah page basket
+        const basketPage = document.createElement('div');
+        basketPage.id = 'page-basket';
+        basketPage.className = 'page-content';
+        basketPage.innerHTML = `
+            <div class="section-header">
+                <h2>YOUR BASKET</h2>
+                <span id="basketTotalItems">0 items</span>
+            </div>
+            <div id="basketItemsContainer"></div>
+            <button id="checkoutWhatsAppBtn"> 
+                <i class="fab fa-whatsapp"></i> ORDER VIA WHATSAPP
+            </button>
+        `;
+        document.querySelector('.container').appendChild(basketPage);
+        allPages.basket = basketPage;
+
+        // ===== RENDER BASKET ITEMS =====
+        function renderBasketItems() {
+            const container = document.getElementById('basketItemsContainer');
+            const totalSpan = document.getElementById('basketTotalItems');
+            if (!container) return;
+
+            if (basket.length === 0) {
+                container.innerHTML = `<div class="basket-empty-msg">Your basket is empty. Start shopping!</div>`;
+                if(totalSpan) totalSpan.textContent = '0 items';
+                document.getElementById('checkoutWhatsAppBtn').style.display = 'none';
+                return;
+            }
+            
+            document.getElementById('checkoutWhatsAppBtn').style.display = 'flex';
+
+            let html = '';
+            let totalPrice = 0;
+            
+            basket.forEach((item) => {
+                const priceNum = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                const itemTotal = priceNum * (item.qty || 1);
+                totalPrice += itemTotal;
+
+                html += `
+                    <div class="basket-item-card">
+                        <img class="basket-item-img" src="${item.img}" alt="${item.name}">
+                        <div class="basket-item-details">
+                            <h4>${item.name}</h4>
+                            <div class="basket-item-price">${item.price}</div>
+                            <div class="basket-qty-control">
+                                <button class="basket-qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                                <span class="basket-qty-num">${item.qty || 1}</span>
+                                <button class="basket-qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="basket-item-right">
+                            <div class="basket-item-total">RM ${itemTotal.toFixed(2)}</div>
+                            <span class="basket-item-remove" onclick="removeFromBasket('${item.name}')">Remove</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            if(totalSpan) totalSpan.textContent = `${basket.length} items (Total: RM ${totalPrice.toFixed(2)})`;
+            updateBasketCounter();
+        }
+
+        // Expose functions to window for inline onclick
+        window.changeQty = function(name, delta) {
+            const item = basket.find(i => i.name === name);
+            if (item) {
+                item.qty = (item.qty || 1) + delta;
+                if (item.qty <= 0) {
+                    removeFromBasket(name);
+                } else {
+                    saveBasket();
+                    renderBasketItems();
+                }
+            }
+        };
+        window.removeFromBasket = removeFromBasket;
+
+        // ===== WHATSAPP CHECKOUT (PAPAR GAMBAR MINI DALAM CHAT) =====
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'checkoutWhatsAppBtn' || e.target.closest('#checkoutWhatsAppBtn')) {
+                if (basket.length === 0) {
+                    showToast('Basket is empty!');
+                    return;
+                }
+
+                let msg = "Hai Jevinson, saya berminat dengan design ini. Macam mana untuk saya membuat urusan design dan printing?\n\n";
+                msg += "=== ITEM TEMPAHAN ===\n";
+                
+                let total = 0;
+                basket.forEach((item, index) => {
+                    const priceNum = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                    const sub = priceNum * (item.qty || 1);
+                    total += sub;
+                    
+                    // 1. Ambil link gambar penuh
+                    const baseUrl = window.location.origin;
+                    let imgLink = item.img;
+                    if (!imgLink.startsWith('http')) {
+                        imgLink = baseUrl + '/' + imgLink;
+                    }
+
+                    // 2. Guna perkhidmatan percuma untuk kecilkan gambar (supaya jadi gambar mini dalam chat)
+                    const miniImageLink = `https://images.weserv.nl/?url=${encodeURIComponent(imgLink)}&w=150&h=150&fit=cover`;
+
+                    // 3. Letak gambar mini di atas nama barang
+                    msg += `${miniImageLink}\n`; // Letak link gambar mini di baris atas
+                    msg += `${index + 1}. ${item.name} (${item.qty}x) = RM ${sub.toFixed(2)}\n\n`;
+                });
+                msg += `\nJUMLAH KESELURUHAN: RM ${total.toFixed(2)}`;
+
+                const encodedMsg = encodeURIComponent(msg);
+                const phoneNumber = '60174903106'; 
+                
+                window.open(`https://wa.me/${phoneNumber}?text=${encodedMsg}`, '_blank', 'noopener,noreferrer');
+                
+                showToast('📤 Redirecting to WhatsApp...');
+            }
         });
 
-        // 2. DATA & CONFIG
-        const CONFIG = {
-            groomName: 'Rusty',
-            brideName: 'Anney',
-            weddingDate: '2026-11-21T11:00:00',
-            weddingDateDisplay: '21 November 2026',
-            story: [
-                { icon: 'fa-heart', title: 'How we met', desc: 'At a coffee shop in Florence, two strangers shared a smile.', titleMs: 'Kami bertemu', descMs: 'Di sebuah kedai kopi di Florence, dua orang asing tersenyum.' },
-                { icon: 'fa-glass-cheers', title: 'First date', desc: 'Dinner by the river, talking until dawn.', titleMs: 'Tarikh pertama', descMs: 'Makan malam di tepi sungai, berbual hingga subuh.' },
-                { icon: 'fa-ring', title: 'Proposal', desc: 'Under the stars, on a quiet beach in Sicily.', titleMs: 'Lamaran', descMs: 'Di bawah bintang, di pantai yang tenang di Sicily.' },
-                { icon: 'fa-church', title: 'Wedding day', desc: '21 November 2026 — our forever begins.', titleMs: 'Hari perkahwinan', descMs: '21 November 2026 — permulaan selamanya.' }
-            ],
 
-            akad: {
-                icon: 'fa-ring', title: 'Church', titleMs: 'GEREJA',
-                date: '21 November 2026', time: '10:00 AM',
-                venue: 'Gereja Kristus Nokotungag KG.Tombotuon Tambunan', venueMs: 'Gereja Kristus Nokotungag KG.Tombotuon Tambunan',
-                address: 'Kg. Tombotuon, Jalan Tambunan - Kota Kinabalu, 89650 Tambunan, Sabah', addressMs: 'Kg. Tombotuon, Jalan Tambunan - Kota Kinabalu, 89650 Tambunan, Sabah',
-                mapsUrl: 'https://maps.app.goo.gl/4RBm2VpzZy8kpFC5A'
-            },
+        // ===== OVERRIDE PRODUCT CLICK MODAL =====
+        const modalAddBtn = document.getElementById('modalAddBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalImage = document.getElementById('modalImage');
 
-            reception: {
-                icon: 'fa-glass-cheers', title: 'Reception', titleMs: 'Resepsi',
-                date: '21 November 2026', time: '12:30 PM', venue: 'Garden Pavilion, Hotel Victoria',
-                venueMs: 'Pavilion Taman, Hotel Victoria',
-                address: '123 Love St, Florence', addressMs: '123 Love St, Florence', mapsUrl: 'https://maps.google.com/maps?q=Florence'
-            },
+        modalAddBtn.addEventListener('click', function() {
+            const name = modalTitle.textContent;
+            const price = modalPrice.textContent;
+            const desc = modalDesc.textContent;
+            const img = modalImage.src;
+            
+            addToBasket(name, price, desc, img);
+            closeModal();
+        });
 
-            schedule: [
-                { time: '10:00 AM', event: 'Guest Arrival', eventMs: 'Ketibaan Tetamu' },
-                { time: '11:00 AM', event: 'Akad Nikah', eventMs: 'Akad Nikah' },
-                { time: '12:30 PM', event: 'Lunch', eventMs: 'Makan Tengah Hari' },
-                { time: '2:00 PM', event: 'Photography', eventMs: 'Bergambar' },
-                { time: '4:00 PM', event: 'Event Ends', eventMs: 'Majlis Berakhir' }
-            ],
-            venue: { name: 'Hotel Victoria · Grand Ballroom', nameMs: 'Hotel Victoria · Dewan Besar', address: '123 Love St, Florence, Italy', addressMs: '123 Love St, Florence, Itali', mapsUrl: 'https://maps.google.com/maps?q=Florence', wazeUrl: 'https://www.waze.com/ul?q=Florence', embedUrl: 'https://maps.google.com/maps?q=Florence&t=&z=13&ie=UTF8&iwloc=&output=embed' },
-            dressCode: [{ icon: 'fa-user-tie', title: 'Gentlemen', titleMs: 'Lelaki', desc: 'Formal / Suit', descMs: 'Formal / Sut' }, { icon: 'fa-user-tag', title: 'Ladies', titleMs: 'Wanita', desc: 'Formal / Evening Dress', descMs: 'Formal / Gaun Malam' }],
-            bank: { name: 'BCA', accountName: 'Anney & Rusty', accountNumber: '123-456-7890' },
-            faq: [
-                { q: 'Is parking available?', a: 'Yes, free parking at the venue.', qMs: 'Adakah tempat parking disediakan?', aMs: 'Ya, parking percuma di lokasi.' },
-                { q: 'Can I bring children?', a: 'We kindly request an adult-only celebration.', qMs: 'Boleh saya bawa anak?', aMs: 'Kami memohon majlis dewasa sahaja.' },
-                { q: 'Is the venue indoor or outdoor?', a: 'Both — ceremony indoors, reception in the garden.', qMs: 'Adakah lokasi dalam atau luar?', aMs: 'Kedua-duanya — majlis di dalam, resepsi di taman.' },
-                { q: 'What should I wear?', a: 'Formal attire as per dress code.', qMs: 'Apa yang perlu saya pakai?', aMs: 'Pakaian formal seperti kod pakaian.' },
-                { q: 'Can I RSVP for someone else?', a: 'Yes, please include their name in the message.', qMs: 'Boleh saya RSVP untuk orang lain?', aMs: 'Ya, sila masukkan nama mereka dalam mesej.' }
-            ],
-            galleryImages: ['IMAGE/kiw.jpg', 'IMAGE/FRONT.jpeg', 'IMAGE/FRONT.jpeg', 'IMAGE/kiw.jpg', 'IMAGE/FRONT.jpeg', 'IMAGE/kiw.jpg'],
-            musicUrl: 'laguback.mp3',
-            rsvpEndpoint: ''
-        };
+        // ===== NAVIGATION LOGIC =====
+        let isTransitioning = false;
+        function navigateTo(pageId) {
+            if (isTransitioning) return;
+            if (!allPages[pageId]) return;
 
-        // 3. RENDER FUNCTIONS
-        function renderContent() {
-            const couple = CONFIG.brideName + ' & ' + CONFIG.groomName;
-            document.getElementById('envNames').textContent = couple;
-            document.getElementById('envDate').textContent = CONFIG.weddingDateDisplay;
-            document.getElementById('footerText').textContent = couple + ' · ' + CONFIG.weddingDateDisplay;
+            const currentActive = document.querySelector('.page-content.active');
+            const targetPage = allPages[pageId];
 
-            const timelineContainer = document.getElementById('timelineContainer');
-            timelineContainer.innerHTML = '';
-            CONFIG.story.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = 'timeline-item';
-                div.style.animationDelay = (0.1 + i * 0.12) + 's';
-                const isMs = currentLang === 'ms';
-                div.innerHTML = `<span class="timeline-icon"><i class="fas ${item.icon}"></i></span><div><h3>${isMs ? item.titleMs : item.title}</h3><p>${isMs ? item.descMs : item.desc}</p></div>`;
-                timelineContainer.appendChild(div);
-            });
+            if (currentActive === targetPage) {
+                showToast(`📄 ${pageId.toUpperCase()}`);
+                return;
+            }
 
-            const detailsContainer = document.getElementById('detailsContainer');
-            detailsContainer.innerHTML = '';
-            [CONFIG.akad, CONFIG.reception].forEach(d => {
-                const card = document.createElement('div');
-                card.className = 'detail-card';
-                const isMs = currentLang === 'ms';
-                card.innerHTML = `<i class="fas ${d.icon}"></i><h3>${isMs ? d.titleMs : d.title}</h3><p><strong>${isMs ? 'Tarikh' : 'Date'}:</strong> ${d.date}</p><p><strong>${isMs ? 'Masa' : 'Time'}:</strong> ${d.time}</p><p><strong>${isMs ? 'Lokasi' : 'Venue'}:</strong> ${isMs ? d.venueMs : d.venue}</p><p><strong>${isMs ? 'Alamat' : 'Address'}:</strong> ${isMs ? d.addressMs : d.address}</p><a href="${d.mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-btn"><i class="fas fa-map-marker-alt"></i> Google Maps</a>`;
-                detailsContainer.appendChild(card);
-            });
+            isTransitioning = true;
 
-            const scheduleContainer = document.getElementById('scheduleContainer');
-            scheduleContainer.innerHTML = '';
-            CONFIG.schedule.forEach(s => {
-                const div = document.createElement('div');
-                const isMs = currentLang === 'ms';
-                div.innerHTML = `<span>${s.time}</span>${isMs ? s.eventMs : s.event}`;
-                scheduleContainer.appendChild(div);
-            });
+            if (currentActive) {
+                currentActive.classList.remove('active', 'fade-in');
+                currentActive.classList.add('fade-out');
+            }
 
-            const venueContainer = document.getElementById('venueContainer');
-            const isMs = currentLang === 'ms';
-            venueContainer.innerHTML = `<img src="IMAGE/kiw.jpg" alt="Venue" loading="lazy" /><h3>${isMs ? CONFIG.venue.nameMs : CONFIG.venue.name}</h3><p>${isMs ? CONFIG.venue.addressMs : CONFIG.venue.address}</p><div class="venue-buttons"><a href="${CONFIG.venue.mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-btn"><i class="fas fa-map"></i> Google Maps</a><a href="${CONFIG.venue.wazeUrl}" target="_blank" rel="noopener noreferrer" class="map-btn"><i class="fas fa-location-arrow"></i> Waze</a></div><div class="map-embed"><iframe src="${CONFIG.venue.embedUrl}" loading="lazy" title="Venue map" allowfullscreen></iframe></div>`;
+            setTimeout(() => {
+                Object.values(allPages).forEach(p => {
+                    p.classList.remove('active', 'fade-out', 'fade-in');
+                });
 
-            const dressContainer = document.getElementById('dressContainer');
-            dressContainer.innerHTML = '';
-            CONFIG.dressCode.forEach(d => {
-                const div = document.createElement('div');
-                div.innerHTML = `<i class="fas ${d.icon}"></i><h3>${isMs ? d.titleMs : d.title}</h3><p>${isMs ? d.descMs : d.desc}</p>`;
-                dressContainer.appendChild(div);
-            });
+                targetPage.classList.add('active', 'fade-in');
 
-            const bankContainer = document.getElementById('bankContainer');
-            bankContainer.innerHTML = `<div style="text-align: center;"><p><strong>${isMs ? 'Bank' : 'Bank'}</strong> ${CONFIG.bank.name}</p><p><strong>${isMs ? 'Nama Akaun' : 'Account Name'}</strong> ${CONFIG.bank.accountName}</p><p><strong>${isMs ? 'Nombor Akaun' : 'Account Number'}</strong> <span id="accountNumber">${CONFIG.bank.accountNumber}</span></p><button id="copyAccountBtn" class="secondary-btn"><i class="fas fa-copy"></i> ${isMs ? 'SALIN NOMBOR' : 'COPY ACCOUNT NUMBER'}</button><span id="copyFeedback" style="display:none;">${isMs ? 'Disalin!' : 'Copied!'}</span></div>`;
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('active');
+                    }
+                });
 
-            const faqContainer = document.getElementById('faqContainer');
-            faqContainer.innerHTML = '';
-            CONFIG.faq.forEach(f => {
-                const div = document.createElement('div');
-                div.innerHTML = `<button class="faq-question" aria-expanded="false">${isMs ? f.qMs : f.q} <i class="fas fa-chevron-down"></i></button><div class="faq-answer"><p>${isMs ? f.aMs : f.a}</p></div>`;
-                faqContainer.appendChild(div);
-            });
-
-            const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = '';
-            CONFIG.galleryImages.forEach((src, i) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = 'Gallery ' + (i + 1);
-                img.loading = 'lazy';
-                img.dataset.index = i;
-                galleryGrid.appendChild(img);
-            });
-        }
-
-        // 4. TUKAR BAHASA
-        const translations = {
-            en: { envSubtitle: "THE WEDDING OF", openInvitation: "OPEN INVITATION", home: "Home", story: "Story", events: "Events", gallery: "Gallery", rsvp: "RSVP", info: "Info", ourStory: "Our Story", weddingDetails: "Wedding Details", orderOfDay: "Order of the Day", venue: "Venue", galleryTitle: "Gallery", rsvpTitle: "RSVP", fullName: "Full Name ", attendance: "Attendance", attendYes: "Yes, I will attend", attendNo: "Sorry, I cannot attend", guests: "Number of Guests ", phone: "Phone Number ", mealPref: "Meal Preference", noPref: "No preference", chicken: "Chicken", beef: "Beef", vegetarian: "Vegetarian", wishes: "Message / Wishes ", confirmRsvp: "CONFIRM RSVP", infoTitle: "Information", dressCode: "Dress Code", weddingGift: "Wedding Gift", giftMsg: "Your presence is the greatest gift.", faqTitle: "FAQ" },
-            ms: { envSubtitle: "PERKAHWINAN", openInvitation: "BUKA JEMPUTAN", home: "Utama", story: "Cerita", events: "Acara", gallery: "Galeri", rsvp: "RSVP", info: "Maklumat", ourStory: "Cerita Kami", weddingDetails: "Butiran Perkahwinan", orderOfDay: "Aturcara Majlis", venue: "Lokasi", galleryTitle: "Galeri", rsvpTitle: "RSVP", fullName: "Nama Penuh ", attendance: "Kehadiran", attendYes: "Ya, saya akan hadir", attendNo: "Maaf, saya tidak dapat hadir", guests: "Bilangan Tetamu ", phone: "Nombor Telefon ", mealPref: "Pilihan Makanan", noPref: "Tiada pilihan", chicken: "Ayam", beef: "Daging", vegetarian: "Vegetarian", wishes: "Mesej / Ucapan ", confirmRsvp: "SAHKAN RSVP", infoTitle: "Maklumat", dressCode: "Kod Pakaian", weddingGift: "Hadiah Perkahwinan", giftMsg: "Kehadiran anda adalah hadiah yang terbaik.", faqTitle: "Soalan Lazim" }
-        };
-
-        let currentLang = 'en';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.getElementById('langToggle').textContent = lang === 'en' ? 'MY' : 'EN';
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            document.getElementById('envSubtitle').textContent = translations[lang].envSubtitle;
-            document.getElementById('openInvitationBtn').textContent = translations[lang].openInvitation;
-            renderContent();
-        }
-
-        const savedLang = localStorage.getItem('lang');
-        if (savedLang) {
-            currentLang = savedLang;
-            renderContent();
-            setLanguage(savedLang);
-        } else setLanguage('en');
-
-        document.getElementById('langToggle').addEventListener('click', () => setLanguage(currentLang === 'en' ? 'ms' : 'en'));
-
-        // 5. NAVIGATION
-        const navLinks = document.querySelectorAll('#floating-nav a');
-        const pages = { home: document.getElementById('home'), story: document.getElementById('story'), events: document.getElementById('events'), gallery: document.getElementById('gallery'), rsvp: document.getElementById('rsvp'), info: document.getElementById('info') };
-
-        function switchPage(pageId) {
-            Object.values(pages).forEach(p => p.classList.remove('active'));
-            if (pages[pageId]) pages[pageId].classList.add('active');
-            navLinks.forEach(link => link.classList.toggle('active', link.dataset.page === pageId));
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                isTransitioning = false;
+                showToast(`📄 ${pageId.toUpperCase()}`);
+                
+                if (pageId === 'basket') {
+                    renderBasketItems();
+                }
+            }, 320);
         }
 
         navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                switchPage(link.dataset.page);
+            link.addEventListener('click', function() {
+                const page = this.dataset.page;
+                navigateTo(page);
             });
         });
 
-        // 6. RSVP
-        const rsvpForm = document.getElementById('rsvpForm');
-        const rsvpModal = document.getElementById('rsvpModal');
-        const modalName = document.getElementById('modalName');
-        const closeModalBtn = document.getElementById('closeModalBtn');
+        // ===== LOGO & BUTTONS =====
+        document.getElementById('logoBtn').addEventListener('click', function() { navigateTo('home'); });
+        document.getElementById('startShoppingBtn').addEventListener('click', function() { navigateTo('shop'); });
+        document.getElementById('viewAllBtn').addEventListener('click', function() { navigateTo('shop'); });
 
-        rsvpForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('fullName').value.trim();
-            if (!name) return;
-            modalName.textContent = name;
-            rsvpModal.classList.add('show');
-            rsvpForm.reset();
-        });
-
-        closeModalBtn.addEventListener('click', () => rsvpModal.classList.remove('show'));
-        rsvpModal.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); });
-
-        // 7. FAQ
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.faq-question')) {
-                const answer = e.target.closest('.faq-question').nextElementSibling;
-                answer.classList.toggle('show');
-            }
-        });
-
-        // 8. MUZIK
-        let audio = null;
-        let isPlaying = false;
-        const musicToggle = document.getElementById('musicToggle');
-
-        function initMusic(url) {
-            if (!url) return;
-            audio = new Audio(url);
-            audio.loop = true;
-            audio.volume = 0.4;
-            audio.play().catch(() => {});
-            isPlaying = true;
-            musicToggle.classList.add('playing');
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
+        // ===== ORIGINAL RENDER PRODUCTS =====
+        function renderProducts(gridId, products) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+            
+            let html = '';
+            products.forEach(p => {
+                html += `
+                    <div class="product-card" data-name="${p.name}" data-price="${p.price}" data-desc="${p.desc}" data-img="${p.img}">
+                        <img class="product-image" src="${p.img}" alt="${p.name}" />
+                        <h4>${p.name}</h4>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+            
+            grid.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    const price = this.getAttribute('data-price');
+                    const desc = this.getAttribute('data-desc');
+                    const img = this.getAttribute('data-img');
+                    openModal(name, price, desc, img);
+                });
+            });
         }
 
-        const startMusic = () => {
-            if (!isPlaying) {
-                audio.play().catch(() => {});
-                isPlaying = true;
-                musicToggle.classList.add('playing');
-            }
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
+        // ===== MODAL LOGIC =====
+        const modal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalCloseBtn');
+
+        function openModal(name, price, desc, imgSrc) {
+            modalImage.src = imgSrc;
+            modalTitle.textContent = name;
+            modalPrice.textContent = price;
+            modalDesc.textContent = desc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+
+        // ===== LOAD DATA =====
+        const productData = {
+            home: [
+                { name: "TSHIRT MEDIA 2026", desc: "Tshirt rasmi Media JBPM Johor edisi 2026. Kualiti premium dan selesa dipakai.", price: "RM 35", img: "Tshirt_Design/PROMOTE TSHIRT.jpg" },
+                { name: "JDT SWIMMER", desc: "made for JDT SWIMMERS for JBPM (Round neck).", price: "RM 55", img: "Tshirt_Design/DESIGN 1.jpg" },
+                { name: "NON MUSLIM TSHIRT", desc: "Complete your look with this trendy street cap accessory.", price: "RM 25", img: "Tshirt_Design/FIREFIGHTERS-PRAY-JERSEY-DESIGN.jpg" },
+                { name: "JDT SWIMMER 2", desc: "made for JDT SWIMMERS for JBPM (Collar neck).", price: "RM 120", img: "Tshirt_Design/DESIGN 2.jpg" }
+            ],
+            shop: [
+                { name: "TSHIRT MEDIA 2026", desc: "Tshirt rasmi Media JBPM Johor edisi 2026. Kualiti premium dan selesa dipakai.", price: "RM 35", img: "Tshirt_Design/PROMOTE TSHIRT.jpg" },
+                { name: "JDT SWIMMER", desc: "made for JDT SWIMMERS for JBPM (Round neck).", price: "RM 55", img: "Tshirt_Design/DESIGN 1.jpg" },
+                { name: "NON MUSLIM TSHIRT", desc: "Complete your look with this trendy street cap accessory.", price: "RM 25", img: "Tshirt_Design/FIREFIGHTERS-PRAY-JERSEY-DESIGN.jpg" },
+                { name: "MONKEY DE LUFFY", desc: "Monkey de luffy Design", price: "RM 32", img: "Tshirt_Design/lufft.jpg" },
+                { name: "RELAKS BEI", desc: "Classic striped pattern t-shirt.", price: "RM 30", img: "Tshirt_Design/relaks bei tshirt.jpg" },
+                { name: "BOKP PGO", desc: "PGO tshirt Design", price: "RM 30", img: "Tshirt_Design/TSHIRT 4.jpg" },
+                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 1.jpg" },
+                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 2.jpg" },
+                { name: "SUKBOM FLAGOFF POSTER", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/SUKBOM POSTER 1.jpg" },
+                { name: "BOMBA DI HATI", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/POSTER FINAL.jpg" },
+            ],
+            hoodies: [ { name: "COMING SOON", desc: "COMING SOON.", price: "RM XXX", img: "Tshirt_Design/images.jpg" } ],
+
+            tshirts: [
+                { name: "TSHIRT MEDIA 2026", desc: "Tshirt rasmi Media JBPM Johor edisi 2026. Kualiti premium dan selesa dipakai.", price: "RM 35", img: "Tshirt_Design/PROMOTE TSHIRT.jpg" },
+                { name: "JDT SWIMMER", desc: "made for JDT SWIMMERS for JBPM (Round neck).", price: "RM 55", img: "Tshirt_Design/DESIGN 1.jpg" },
+                { name: "NON MUSLIM TSHIRT", desc: "Complete your look with this trendy street cap accessory.", price: "RM 25", img: "Tshirt_Design/FIREFIGHTERS-PRAY-JERSEY-DESIGN.jpg" },
+                { name: "MONKEY DE LUFFY", desc: "Monkey de luffy Design", price: "RM 32", img: "Tshirt_Design/lufft.jpg" },
+                { name: "RELAKS BEI", desc: "Classic striped pattern t-shirt.", price: "RM 30", img: "Tshirt_Design/relaks bei tshirt.jpg" },
+                { name: "BOKP PGO", desc: "PGO tshirt Design", price: "RM 30", img: "Tshirt_Design/TSHIRT 4.jpg" },
+                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 1.jpg" },
+                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 2.jpg" },
+            ],
+            POSTER: [
+                { name: "SUKBOM FLAGOFF POSTER", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/SUKBOM POSTER 1.jpg" },
+                { name: "BOMBA DI HATI", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/POSTER FINAL.jpg" },
+
+            ],
+            jackets: [ { name: "COMING SOON", desc: "COMING SOON.", price: "RM XXX", img: "Tshirt_Design/images.jpg" } ]
         };
 
-        musicToggle.addEventListener('click', function() {
-            if (!audio) return;
-            if (isPlaying) {
-                audio.pause();
-                isPlaying = false;
-                this.classList.remove('playing');
-            } else {
-                audio.play().catch(() => {});
-                isPlaying = true;
-                this.classList.add('playing');
-            }
-        });
+        // ===== INITIAL RENDER =====
+        renderProducts('productGrid', productData.home);
+        renderProducts('shopGrid', productData.shop);
+        renderProducts('hoodiesGrid', productData.hoodies);
+        renderProducts('tshirtsGrid', productData.tshirts);
+        renderProducts('POSTERGrid', productData.POSTER);
+        renderProducts('jacketsGrid', productData.jackets);
+        
+        updateBasketCounter();
 
-        // 9. COPY ACCOUNT
-        document.addEventListener('click', function(e) {
-            if (e.target.id === 'copyAccountBtn') {
-                const feedback = document.getElementById('copyFeedback');
-                const text = document.getElementById('accountNumber').textContent;
-                if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => { feedback.style.display = 'inline'; setTimeout(() => { feedback.style.display = 'none'; }, 2000); });
-                else {
-                    const textarea = document.createElement('textarea');
-                    textarea.value = text;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
-                    feedback.style.display = 'inline';
-                    setTimeout(() => { feedback.style.display = 'none'; }, 2000);
-                }
-            }
-        });
+        console.log('✅ Basket & WhatsApp functionality added!');
+    })();
+</script>
 
-        // 10. RENDER AWAL
-        renderContent();
-    </script>
 </body>
 </html>

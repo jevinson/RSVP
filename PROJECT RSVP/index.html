@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Anney & Rusty · Wedding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="phone-container">
+
+        <!-- ENVELOPE SCREEN -->
+        <section id="envelope-screen" aria-label="Invitation envelope">
+            <div class="envelope-container">
+                <div class="envelope-subtitle" id="envSubtitle">THE WEDDING OF</div>
+                <h1 class="envelope-names" id="envNames">Anney & Rusty</h1>
+                <div class="envelope-date" id="envDate">14 February 2027</div>
+                <div class="envelope-icon"><i class="fas fa-envelope"></i></div>
+                <button class="envelope-button" id="openInvitationBtn">OPEN INVITATION</button>
+                <div class="envelope-tap">Tap to open</div>
+            </div>
+        </section>
+
+        <!-- MAIN WEBSITE -->
+        <div id="main-website">
+
+            <!-- BUTANG BAHASA -->
+            <button class="lang-btn" id="langToggle">EN</button>
+
+            <!-- MUSIC BUTTON -->
+            <button class="music-btn" id="musicToggle" aria-label="Toggle music">
+                <i class="fas fa-music"></i>
+            </button>
+
+            <!-- FLOATING NAVIGATION -->
+            <nav id="floating-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#" data-page="home" class="active"><i class="fas fa-home"></i><span data-i18n="home">Home</span></a></li>
+                    <li><a href="#" data-page="story"><i class="fas fa-book-open"></i><span data-i18n="story">Story</span></a></li>
+                    <li><a href="#" data-page="events"><i class="fas fa-ring"></i><span data-i18n="events">Events</span></a></li>
+                    <li><a href="#" data-page="gallery"><i class="fas fa-images"></i><span data-i18n="gallery">Gallery</span></a></li>
+                    <li><a href="#" data-page="rsvp"><i class="fas fa-check-circle"></i><span data-i18n="rsvp">RSVP</span></a></li>
+                    <li><a href="#" data-page="info"><i class="fas fa-info-circle"></i><span data-i18n="info">Info</span></a></li>
+                </ul>
+            </nav>
+
+            <!-- PAGE: HOME -->
+            <section id="home" class="page active">
+                <div class="hero-content">
+                    <div class="hero-subtitle" id="heroSubtitle">Together with their families</div>
+                    <h1 class="hero-names" id="heroNames">Anney <span class="paw"><i class="fas fa-paw"></i></span> Rusty</h1>
+                    <div class="hero-date" id="heroDate">14 February 2027</div>
+                    <p class="hero-invite" id="heroInvite">We invite you to celebrate our love</p>
+                </div>
+
+                <div class="mt-40">
+                    <div class="countdown-grid">
+                        <div><span id="days">00</span><span data-i18n="days">Days</span></div>
+                        <div><span id="hours">00</span><span data-i18n="hours">Hours</span></div>
+                        <div><span id="minutes">00</span><span data-i18n="minutes">Minutes</span></div>
+                        <div><span id="seconds">00</span><span data-i18n="seconds">Seconds</span></div>
+                    </div>
+                    <div class="countdown-label" data-i18n="counting">Counting down</div>
+                    <div id="countdown-message" style="display:none;">Today is the day! ❤️</div>
+                </div>
+            </section>
+
+            <!-- PAGE: STORY -->
+            <section id="story" class="page">
+                <h2 class="page-title" data-i18n="ourStory">Our Story</h2>
+                <div class="timeline" id="timelineContainer">
+                    <!-- Injected by JS -->
+                </div>
+            </section>
+
+            <!-- PAGE: EVENTS -->
+            <section id="events" class="page">
+                <h2 class="page-title" data-i18n="weddingDetails">Wedding Details</h2>
+                <div class="details-cards" id="detailsContainer">
+                    <!-- Injected by JS -->
+                </div>
+
+                <h2 class="page-title mt-40" data-i18n="orderOfDay">Order of the Day</h2>
+                <div class="schedule-list" id="scheduleContainer">
+                    <!-- Injected by JS -->
+                </div>
+
+                <h2 class="page-title mt-40" data-i18n="venue">Venue</h2>
+                <div class="venue-card" id="venueContainer">
+                    <!-- Injected by JS -->
+                </div>
+            </section>
+
+            <!-- PAGE: GALLERY -->
+            <section id="gallery" class="page">
+                <h2 class="page-title" data-i18n="galleryTitle">Gallery</h2>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Injected by JS -->
+                </div>
+            </section>
+
+            <!-- PAGE: RSVP -->
+            <section id="rsvp" class="page">
+                <h2 class="page-title" data-i18n="rsvpTitle">RSVP</h2>
+                <form id="rsvpForm" novalidate>
+                    <label data-i18n="fullName">Full Name <input type="text" id="fullName" required autocomplete="name" placeholder="Your full name" /></label>
+                    <fieldset>
+                        <legend data-i18n="attendance">Attendance</legend>
+                        <div class="radio-group">
+                            <label><input type="radio" name="attendance" value="yes" checked /> <span data-i18n="attendYes">Yes, I will attend</span></label>
+                            <label><input type="radio" name="attendance" value="no" /> <span data-i18n="attendNo">Sorry, I cannot attend</span></label>
+                        </div>
+                    </fieldset>
+                    <label data-i18n="guests">Number of Guests <input type="number" id="guestCount" min="1" value="1" /></label>
+                    <label data-i18n="phone">Phone Number <input type="tel" id="phoneNumber" autocomplete="tel" placeholder="Your phone number" /></label>
+                    <label data-i18n="mealPref">Meal Preference
+                        <select id="mealPreference">
+                            <option value="none" data-i18n="noPref">No preference</option>
+                            <option value="chicken" data-i18n="chicken">Chicken</option>
+                            <option value="beef" data-i18n="beef">Beef</option>
+                            <option value="vegetarian" data-i18n="vegetarian">Vegetarian</option>
+                        </select>
+                    </label>
+                    <label data-i18n="wishes">Message / Wishes <textarea id="wishes" rows="2" placeholder="Your message..."></textarea></label>
+                    <button type="submit" class="primary-btn" data-i18n="confirmRsvp">CONFIRM RSVP</button>
+                </form>
+            </section>
+
+            <!-- PAGE: INFO -->
+            <section id="info" class="page">
+                <h2 class="page-title" data-i18n="infoTitle">Information</h2>
+
+                <h3 class="info-title" data-i18n="dressCode">Dress Code</h3>
+                <div class="dress-cards" id="dressContainer">
+                    <!-- Injected by JS -->
+                </div>
+
+                <h3 class="info-title" data-i18n="weddingGift">Wedding Gift</h3>
+                <p class="gift-message" id="giftMessage" data-i18n="giftMsg">Your presence is the greatest gift.</p>
+                <div class="bank-card" id="bankContainer">
+                    <!-- Injected by JS -->
+                </div>
+
+                <h3 class="info-title" data-i18n="faqTitle">FAQ</h3>
+                <div class="faq-accordion" id="faqContainer">
+                    <!-- Injected by JS -->
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer>
+                <p id="footerText">Anney &amp; Rusty · 14.02.2027</p>
+            </footer>
+        </div>
+
+        <!-- RSVP MODAL -->
+        <div id="rsvpModal" class="modal" role="dialog" aria-modal="true" aria-label="RSVP confirmation">
+            <div class="modal-content">
+                <h2>Thank you, <span id="modalName">Guest</span> ❤️</h2>
+                <p>We have received your RSVP.</p>
+                <button class="primary-btn" id="closeModalBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

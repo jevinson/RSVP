@@ -1,520 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HIGHFLEK STUDIO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikasi To-Do List</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #5568d3;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      padding: 12px 14px;
+      background: #f4f4f8;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s;
+      word-break: break-word;
+    }
+
+    li:hover {
+      background: #e8e8f0;
+    }
+
+    li.done span {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    .delete-btn {
+      background: #e74c3c;
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+
+    .delete-btn:hover {
+      background: #c0392b;
+    }
+
+    .empty {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <div class="container">
+    <h1>📝 To-Do List Saya</h1>
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="logo" id="logoBtn">
-            <img src="logo/2.png" alt="HIGHFLEK STUDIO" />
-        </div>
-        <div class="nav-menu">
-            <span class="nav-link active" data-page="home">HOME</span>
-            <span class="nav-link" data-page="shop">SHOP</span>
-            <span class="nav-link" data-page="hoodies">HOODIES</span>
-            <span class="nav-link" data-page="tshirts">T-SHIRTS</span>
-            <span class="nav-link" data-page="POSTER">POSTER</span>
-            <span class="nav-link" data-page="jackets">JACKETS</span>
-            <span class="nav-link basket-nav-wrapper" data-page="basket">
-                BASKET
-                <span class="basket-counter">0</span>
-            </span>
-        </div>
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Tulis tugas baru...">
+      <button onclick="addTask()">Tambah</button>
     </div>
 
-    <!-- ===== PAGE: HOME ===== -->
-    <div id="page-home" class="page-content active">
-        
-        <!-- HERO -->
-        <div class="hero-section">
-            <div class="hero-content">
-                <img src="logo/1.2.png" alt="HIGHFLEKSTUDIO" class="main-logo" />
-                <p>Sejak 2019, kami menghasilkan streetwear asli yang menggabungkan reka bentuk berani dengan keselesaan harian. Setiap helai dibuat untuk mereka yang memakai identiti dengan bangga.</p>
-                
-                <button class="btn-start" id="startShoppingBtn">
-                    DESIGN CATALOGS <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
+    <ul id="taskList">
+      <li class="empty" id="emptyMsg">Belum ada tugas 🎉</li>
+    </ul>
+  </div>
 
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+    const emptyMsg = document.getElementById('emptyMsg');
 
-        <!-- HIGHFLEK DESIGNS LATEST -->
-        <div class="section-header">
-            <h2>LATEST DESIGN</h2>
-            <span class="view-all" id="viewAllBtn">VIEW ALL →</span>
-        </div>
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (text === '') return;
 
-        <div class="product-grid" id="productGrid">
-            <!-- Produk akan dijana JavaScript -->
-        </div>
+      if (emptyMsg) emptyMsg.remove();
 
-        <!-- COLLABORATION / CREDITS -->
-        <div class="offer-block">
-            <div class="offer-text">
-                <h3>Collaborating With</h3>
-                <p>
-                    Man behind of Highflekstudio, <strong>Jevinson</strong>.<br>
-                    Kerjasama dengan <strong>Riduwan</strong>.
-                </p>
-            </div>
-            <!-- TAMBAH rel="noopener noreferrer" DI SINI UNTUK BUANG WARNING -->
-            <a href="https://www.google.com/maps/place/19,+Jalan+Sungai+Rasau+35,+Kawasan+Perindustrian+Sungai+Rasau,+41300+Klang,+Selangor" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                <button class="btn-subscribe" id="subscribeBtn">
-                    ZIAZ PRINTING <i class="fas fa-arrow-right"></i>
-                </button>
-            </a>
-        </div>
-    </div>
+      const li = document.createElement('li');
 
-    <!-- ===== PAGE: SHOP ===== -->
-    <div id="page-shop" class="page-content">
-        <div class="section-header">
-            <h2>ALL CATALOG</h2>
-        </div>
-        
-        <div class="product-grid" id="shopGrid">
-            <!-- Produk akan dijana JavaScript -->
-        </div>
-    </div>
+      const span = document.createElement('span');
+      span.textContent = text;
+      span.onclick = () => li.classList.toggle('done');
 
-    <!-- ===== PAGE: HOODIES ===== -->
-    <div id="page-hoodies" class="page-content">
-        <div class="section-header">
-            <h2>HOODIES</h2>
-        </div>
-        <div class="product-grid" id="hoodiesGrid">
-            <!-- Produk akan dijana JavaScript -->
-        </div>
-    </div>
-
-    <!-- ===== PAGE: T-SHIRTS ===== -->
-    <div id="page-tshirts" class="page-content">
-        <div class="section-header">
-            <h2>T-SHIRTS</h2>
-        </div>
-        <div class="product-grid" id="tshirtsGrid">
-            <!-- Produk akan dijana JavaScript -->
-        </div>
-    </div>
-
-    <!-- ===== PAGE: POSTER ===== -->
-    <div id="page-POSTER" class="page-content">
-        <div class="section-header">
-            <h2>POSTER</h2>
-        </div>
-        <div class="product-grid" id="POSTERGrid">
-            <!-- Produk akan dijana JavaScript -->
-        </div>
-    </div>
-
-    <!-- ===== PAGE: JACKETS ===== -->
-    <div id="page-jackets" class="page-content">
-        <div class="section-header">
-            <h2>JACKETS</h2>
-        </div>
-        <div class="product-grid" id="jacketsGrid">
-            <!-- Produk akan dijana JavaScript -->
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer-note">
-        <i class="fas fa-tshirt"></i> HIGHFLEK STUDIO 
-    </div>
-</div>
-
-<!-- ============================== -->
-<!-- POPUP / MODAL HTML STRUCTURE  -->
-<!-- ============================== -->
-<div class="modal-overlay" id="productModal">
-    <div class="modal-box">
-        <button class="modal-close" id="modalCloseBtn">&times;</button>
-        
-        <div class="modal-image-container">
-            <img id="modalImage" src="" alt="Product Image" />
-        </div>
-        
-        <div class="modal-details">
-            <h2 id="modalTitle">Product Name</h2>
-            <p class="modal-desc" id="modalDesc">Product description goes here.</p>
-            <div class="modal-price" id="modalPrice">$0.00</div>
-            <button class="modal-add-btn" id="modalAddBtn">Add To Basket</button>
-        </div>
-     </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast-message" id="toast"></div>
-
-<script>
-    (function() {
-        const toast = document.getElementById('toast');
-        let toastTimer = null;
-
-        function showToast(message, duration = 1800) {
-            toast.textContent = message;
-            toast.classList.add('show');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, duration);
+      const btn = document.createElement('button');
+      btn.textContent = '✕';
+      btn.className = 'delete-btn';
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        li.remove();
+        if (taskList.children.length === 0) {
+          const msg = document.createElement('li');
+          msg.className = 'empty';
+          msg.id = 'emptyMsg';
+          msg.textContent = 'Belum ada tugas 🎉';
+          taskList.appendChild(msg);
         }
+      };
 
-        // ===== BASKET LOGIC (Tambah Simpan Data) =====
-        let basket = JSON.parse(localStorage.getItem('highflekBasket')) || [];
+      li.appendChild(span);
+      li.appendChild(btn);
+      taskList.appendChild(li);
 
-        function saveBasket() {
-            localStorage.setItem('highflekBasket', JSON.stringify(basket));
-            updateBasketCounter();
-        }
+      taskInput.value = '';
+      taskInput.focus();
+    }
 
-        function addToBasket(name, price, desc, img) {
-            const existingItem = basket.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty = (existingItem.qty || 1) + 1;
-            } else {
-                basket.push({ name, price, desc, img, qty: 1 });
-            }
-            saveBasket();
-            showToast(`🛒 "${name}" added to basket!`);
-        }
-
-        function removeFromBasket(name) {
-            basket = basket.filter(item => item.name !== name);
-            saveBasket();
-            renderBasketItems(); 
-        }
-
-        function updateBasketCounter() {
-            const counter = document.querySelector('.basket-counter');
-            if (counter) {
-                const totalItems = basket.reduce((sum, item) => sum + (item.qty || 1), 0);
-                counter.textContent = totalItems;
-                counter.style.display = totalItems > 0 ? 'flex' : 'none';
-            }
-        }
-
-        // ===== NAVIGATION & PAGES =====
-        const navLinks = document.querySelectorAll('.nav-link');
-        const allPages = {
-            home: document.getElementById('page-home'),
-            shop: document.getElementById('page-shop'),
-            hoodies: document.getElementById('page-hoodies'),
-            tshirts: document.getElementById('page-tshirts'),
-            POSTER: document.getElementById('page-POSTER'),
-            jackets: document.getElementById('page-jackets')
-        };
-        
-        // Tambah page basket
-        const basketPage = document.createElement('div');
-        basketPage.id = 'page-basket';
-        basketPage.className = 'page-content';
-        basketPage.innerHTML = `
-            <div class="section-header">
-                <h2>YOUR BASKET</h2>
-                <span id="basketTotalItems">0 items</span>
-            </div>
-            <div id="basketItemsContainer"></div>
-            <button id="checkoutWhatsAppBtn"> 
-                <i class="fab fa-whatsapp"></i> ORDER VIA WHATSAPP
-            </button>
-        `;
-        document.querySelector('.container').appendChild(basketPage);
-        allPages.basket = basketPage;
-
-        // ===== RENDER BASKET ITEMS =====
-        function renderBasketItems() {
-            const container = document.getElementById('basketItemsContainer');
-            const totalSpan = document.getElementById('basketTotalItems');
-            if (!container) return;
-
-            if (basket.length === 0) {
-                container.innerHTML = `<div class="basket-empty-msg">Your basket is empty. Start shopping!</div>`;
-                if(totalSpan) totalSpan.textContent = '0 items';
-                document.getElementById('checkoutWhatsAppBtn').style.display = 'none';
-                return;
-            }
-            
-            document.getElementById('checkoutWhatsAppBtn').style.display = 'flex';
-
-            let html = '';
-            let totalPrice = 0;
-            
-            basket.forEach((item) => {
-                const priceNum = parseFloat(item.price.replace(/[^0-9.]/g, ''));
-                const itemTotal = priceNum * (item.qty || 1);
-                totalPrice += itemTotal;
-
-                html += `
-                    <div class="basket-item-card">
-                        <img class="basket-item-img" src="${item.img}" alt="${item.name}">
-                        <div class="basket-item-details">
-                            <h4>${item.name}</h4>
-                            <div class="basket-item-price">${item.price}</div>
-                            <div class="basket-qty-control">
-                                <button class="basket-qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
-                                <span class="basket-qty-num">${item.qty || 1}</span>
-                                <button class="basket-qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
-                            </div>
-                        </div>
-                        <div class="basket-item-right">
-                            <div class="basket-item-total">RM ${itemTotal.toFixed(2)}</div>
-                            <span class="basket-item-remove" onclick="removeFromBasket('${item.name}')">Remove</span>
-                        </div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-            if(totalSpan) totalSpan.textContent = `${basket.length} items (Total: RM ${totalPrice.toFixed(2)})`;
-            updateBasketCounter();
-        }
-
-        // Expose functions to window for inline onclick
-        window.changeQty = function(name, delta) {
-            const item = basket.find(i => i.name === name);
-            if (item) {
-                item.qty = (item.qty || 1) + delta;
-                if (item.qty <= 0) {
-                    removeFromBasket(name);
-                } else {
-                    saveBasket();
-                    renderBasketItems();
-                }
-            }
-        };
-        window.removeFromBasket = removeFromBasket;
-
-        // ===== WHATSAPP CHECKOUT (PAPAR GAMBAR MINI DALAM CHAT) =====
-        document.addEventListener('click', function(e) {
-            if (e.target.id === 'checkoutWhatsAppBtn' || e.target.closest('#checkoutWhatsAppBtn')) {
-                if (basket.length === 0) {
-                    showToast('Basket is empty!');
-                    return;
-                }
-
-                let msg = "Hai Jevinson, saya berminat dengan design ini. Macam mana untuk saya membuat urusan design dan printing?\n\n";
-                msg += "=== ITEM TEMPAHAN ===\n";
-                
-                let total = 0;
-                basket.forEach((item, index) => {
-                    const priceNum = parseFloat(item.price.replace(/[^0-9.]/g, ''));
-                    const sub = priceNum * (item.qty || 1);
-                    total += sub;
-                    
-                    // 1. Ambil link gambar penuh
-                    const baseUrl = window.location.origin;
-                    let imgLink = item.img;
-                    if (!imgLink.startsWith('http')) {
-                        imgLink = baseUrl + '/' + imgLink;
-                    }
-
-                    // 2. Guna perkhidmatan percuma untuk kecilkan gambar (supaya jadi gambar mini dalam chat)
-                    const miniImageLink = `https://images.weserv.nl/?url=${encodeURIComponent(imgLink)}&w=150&h=150&fit=cover`;
-
-                    // 3. Letak gambar mini di atas nama barang
-                    msg += `${miniImageLink}\n`; // Letak link gambar mini di baris atas
-                    msg += `${index + 1}. ${item.name} (${item.qty}x) = RM ${sub.toFixed(2)}\n\n`;
-                });
-                msg += `\nJUMLAH KESELURUHAN: RM ${total.toFixed(2)}`;
-
-                const encodedMsg = encodeURIComponent(msg);
-                const phoneNumber = '60174903106'; 
-                
-                window.open(`https://wa.me/${phoneNumber}?text=${encodedMsg}`, '_blank', 'noopener,noreferrer');
-                
-                showToast('📤 Redirecting to WhatsApp...');
-            }
-        });
-
-
-        // ===== OVERRIDE PRODUCT CLICK MODAL =====
-        const modalAddBtn = document.getElementById('modalAddBtn');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalPrice = document.getElementById('modalPrice');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalImage = document.getElementById('modalImage');
-
-        modalAddBtn.addEventListener('click', function() {
-            const name = modalTitle.textContent;
-            const price = modalPrice.textContent;
-            const desc = modalDesc.textContent;
-            const img = modalImage.src;
-            
-            addToBasket(name, price, desc, img);
-            closeModal();
-        });
-
-        // ===== NAVIGATION LOGIC =====
-        let isTransitioning = false;
-        function navigateTo(pageId) {
-            if (isTransitioning) return;
-            if (!allPages[pageId]) return;
-
-            const currentActive = document.querySelector('.page-content.active');
-            const targetPage = allPages[pageId];
-
-            if (currentActive === targetPage) {
-                showToast(`📄 ${pageId.toUpperCase()}`);
-                return;
-            }
-
-            isTransitioning = true;
-
-            if (currentActive) {
-                currentActive.classList.remove('active', 'fade-in');
-                currentActive.classList.add('fade-out');
-            }
-
-            setTimeout(() => {
-                Object.values(allPages).forEach(p => {
-                    p.classList.remove('active', 'fade-out', 'fade-in');
-                });
-
-                targetPage.classList.add('active', 'fade-in');
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.dataset.page === pageId) {
-                        link.classList.add('active');
-                    }
-                });
-
-                isTransitioning = false;
-                showToast(`📄 ${pageId.toUpperCase()}`);
-                
-                if (pageId === 'basket') {
-                    renderBasketItems();
-                }
-            }, 320);
-        }
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                const page = this.dataset.page;
-                navigateTo(page);
-            });
-        });
-
-        // ===== LOGO & BUTTONS =====
-        document.getElementById('logoBtn').addEventListener('click', function() { navigateTo('home'); });
-        document.getElementById('startShoppingBtn').addEventListener('click', function() { navigateTo('shop'); });
-        document.getElementById('viewAllBtn').addEventListener('click', function() { navigateTo('shop'); });
-
-        // ===== ORIGINAL RENDER PRODUCTS =====
-        function renderProducts(gridId, products) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return;
-            
-            let html = '';
-            products.forEach(p => {
-                html += `
-                    <div class="product-card" data-name="${p.name}" data-price="${p.price}" data-desc="${p.desc}" data-img="${p.img}">
-                        <img class="product-image" src="${p.img}" alt="${p.name}" />
-                        <h4>${p.name}</h4>
-                    </div>
-                `;
-            });
-            grid.innerHTML = html;
-            
-            grid.querySelectorAll('.product-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const name = this.getAttribute('data-name');
-                    const price = this.getAttribute('data-price');
-                    const desc = this.getAttribute('data-desc');
-                    const img = this.getAttribute('data-img');
-                    openModal(name, price, desc, img);
-                });
-            });
-        }
-
-        // ===== MODAL LOGIC =====
-        const modal = document.getElementById('productModal');
-        const modalClose = document.getElementById('modalCloseBtn');
-
-        function openModal(name, price, desc, imgSrc) {
-            modalImage.src = imgSrc;
-            modalTitle.textContent = name;
-            modalPrice.textContent = price;
-            modalDesc.textContent = desc;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-        });
-
-        // ===== LOAD DATA =====
-        const productData = {
-            home: [
-                { name: "TSHIRT MEDIA 2026", desc: "Tshirt rasmi Media JBPM Johor edisi 2026. Kualiti premium dan selesa dipakai.", price: "RM 35", img: "Tshirt_Design/PROMOTE TSHIRT.jpg" },
-                { name: "JDT SWIMMER", desc: "made for JDT SWIMMERS for JBPM (Round neck).", price: "RM 55", img: "Tshirt_Design/DESIGN 1.jpg" },
-                { name: "NON MUSLIM TSHIRT", desc: "Complete your look with this trendy street cap accessory.", price: "RM 25", img: "Tshirt_Design/FIREFIGHTERS-PRAY-JERSEY-DESIGN.jpg" },
-                { name: "JDT SWIMMER 2", desc: "made for JDT SWIMMERS for JBPM (Collar neck).", price: "RM 120", img: "Tshirt_Design/DESIGN 2.jpg" }
-            ],
-            shop: [
-                { name: "TSHIRT MEDIA 2026", desc: "Tshirt rasmi Media JBPM Johor edisi 2026. Kualiti premium dan selesa dipakai.", price: "RM 35", img: "Tshirt_Design/PROMOTE TSHIRT.jpg" },
-                { name: "JDT SWIMMER", desc: "made for JDT SWIMMERS for JBPM (Round neck).", price: "RM 55", img: "Tshirt_Design/DESIGN 1.jpg" },
-                { name: "NON MUSLIM TSHIRT", desc: "Complete your look with this trendy street cap accessory.", price: "RM 25", img: "Tshirt_Design/FIREFIGHTERS-PRAY-JERSEY-DESIGN.jpg" },
-                { name: "MONKEY DE LUFFY", desc: "Monkey de luffy Design", price: "RM 32", img: "Tshirt_Design/lufft.jpg" },
-                { name: "RELAKS BEI", desc: "Classic striped pattern t-shirt.", price: "RM 30", img: "Tshirt_Design/relaks bei tshirt.jpg" },
-                { name: "BOKP PGO", desc: "PGO tshirt Design", price: "RM 30", img: "Tshirt_Design/TSHIRT 4.jpg" },
-                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 1.jpg" },
-                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 2.jpg" },
-                { name: "SUKBOM FLAGOFF POSTER", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/SUKBOM POSTER 1.jpg" },
-                { name: "BOMBA DI HATI", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/POSTER FINAL.jpg" },
-            ],
-            hoodies: [ { name: "COMING SOON", desc: "COMING SOON.", price: "RM XXX", img: "Tshirt_Design/images.jpg" } ],
-
-            tshirts: [
-                { name: "TSHIRT MEDIA 2026", desc: "Tshirt rasmi Media JBPM Johor edisi 2026. Kualiti premium dan selesa dipakai.", price: "RM 35", img: "Tshirt_Design/PROMOTE TSHIRT.jpg" },
-                { name: "JDT SWIMMER", desc: "made for JDT SWIMMERS for JBPM (Round neck).", price: "RM 55", img: "Tshirt_Design/DESIGN 1.jpg" },
-                { name: "NON MUSLIM TSHIRT", desc: "Complete your look with this trendy street cap accessory.", price: "RM 25", img: "Tshirt_Design/FIREFIGHTERS-PRAY-JERSEY-DESIGN.jpg" },
-                { name: "MONKEY DE LUFFY", desc: "Monkey de luffy Design", price: "RM 32", img: "Tshirt_Design/lufft.jpg" },
-                { name: "RELAKS BEI", desc: "Classic striped pattern t-shirt.", price: "RM 30", img: "Tshirt_Design/relaks bei tshirt.jpg" },
-                { name: "BOKP PGO", desc: "PGO tshirt Design", price: "RM 30", img: "Tshirt_Design/TSHIRT 4.jpg" },
-                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 1.jpg" },
-                { name: "TSHIRT OPERASI", desc: "street fashion.", price: "RM 45", img: "Tshirt_Design/TSHIRT 2.jpg" },
-            ],
-            POSTER: [
-                { name: "SUKBOM FLAGOFF POSTER", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/SUKBOM POSTER 1.jpg" },
-                { name: "BOMBA DI HATI", desc: "SUKBOM FlagOff Poster", price: "RM 35", img: "poster/POSTER FINAL.jpg" },
-
-            ],
-            jackets: [ { name: "COMING SOON", desc: "COMING SOON.", price: "RM XXX", img: "Tshirt_Design/images.jpg" } ]
-        };
-
-        // ===== INITIAL RENDER =====
-        renderProducts('productGrid', productData.home);
-        renderProducts('shopGrid', productData.shop);
-        renderProducts('hoodiesGrid', productData.hoodies);
-        renderProducts('tshirtsGrid', productData.tshirts);
-        renderProducts('POSTERGrid', productData.POSTER);
-        renderProducts('jacketsGrid', productData.jackets);
-        
-        updateBasketCounter();
-
-        console.log('✅ Basket & WhatsApp functionality added!');
-    })();
-</script>
+    // Tambah dengan tekan Enter
+    taskInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') addTask();
+    });
+  </script>
 
 </body>
 </html>
